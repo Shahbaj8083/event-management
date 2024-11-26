@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AttendeeResource;
+use App\Models\Attendee;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class AttendeeController extends Controller
@@ -10,9 +13,14 @@ class AttendeeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Event $event)
     {
-        //
+        $attendees = $event->attendees()->latest();
+        return AttendeeResource::collection(
+            $attendees->paginate() 
+        );
+
+        // return Attendee::with('event')->where('event_id', $event->id)->get();
     }
 
     /**

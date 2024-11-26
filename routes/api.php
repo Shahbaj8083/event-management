@@ -24,3 +24,4 @@ Route::apiResource('events', EventController::class);
 Route::apiResource('events.attendees', AttendeeController::class)
     ->scoped(['attendee' => 'event']);
     # The keys in the scoped method should refer to the singular form of the model name
+    #every attendee is bolongs to any of the event, without event no attendee
