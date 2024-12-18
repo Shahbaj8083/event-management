@@ -13,10 +13,17 @@ return [
     |
     */
 
+    /** Previous setting */
+    // 'defaults' => [
+    //     'guard' => 'web',
+    //     'passwords' => 'users',
+    // ],
+
+    /** I have changed for jwt authentication */
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
-    ],
+    'guard' => 'api',  // Change 'web' to 'api'
+    'passwords' => 'users',
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -35,12 +42,27 @@ return [
     |
     */
 
+     /** Previous setting */
+    // 'guards' => [
+    //     'web' => [
+    //         'driver' => 'session',
+    //         'provider' => 'users',
+    //     ],
+    // ],
+
+     /** I have changed for jwt authentication */
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
     ],
+
+    'api' => [
+        'driver' => 'jwt',  // Use JWT for the API guard
+        'provider' => 'users',
+    ],
+],
+
 
     /*
     |--------------------------------------------------------------------------
